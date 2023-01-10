@@ -37,9 +37,10 @@ app.post("/",function(req,res){
         auth: "puneeeeeeet:a361ec93689461c12db59a32f5c33e89-us10"
     }
     const request = https.request(url, options, function(response){
+        console.log('response',response)
         if(response.statusCode===200){
             res.sendFile(__dirname+ "/success.html")
-        }else{
+        }else{ 
             res.sendFile(__dirname+ "/failure.html")
         }
         response.on("data",function(data){
@@ -55,10 +56,11 @@ app.post("/failure",function(req,res){
     res.redirect("/")
 });
 
-app.listen(process.env.PORT || 3000,function(){
+app.listen(3000,function(){
     console.log("server working on port 3000");
 })
 
+// process.env.PORT || 
 
 
 
