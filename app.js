@@ -2,10 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const app = express();
+const path = require("path");
 const https = require('node:https');
 
-
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/",function(req,res){
