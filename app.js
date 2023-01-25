@@ -2,14 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const app = express();
-const path = require("path");
 const https = require('node:https');
+const path = require("path");
 
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/",function(req,res){
+    
     res.sendFile(__dirname + "/signup.html");
 });
 
@@ -27,7 +28,7 @@ app.post("/",function(req,res){
                 FNAME : firstName,
                 LNAME : lastName,
             }
-        } 
+        }
     ]
     };
     const jsonData = JSON.stringify(data);
@@ -50,8 +51,8 @@ app.post("/",function(req,res){
     });
     request.write(jsonData);
     request.end();
-   
-});   
+
+});
 
 app.post("/failure",function(req,res){
     res.redirect("/")
@@ -61,7 +62,7 @@ app.listen(3000,function(){
     console.log("server working on port 3000");
 })
 
-// process.env.PORT || 
+// process.env.PORT ||
 
 
 
